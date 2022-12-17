@@ -1,0 +1,14 @@
+{% extends "master/base.html" %}
+{% block title %}Home Page{% endblock %}
+
+{% block content %}
+<h1>Home</h1>
+<p>Welcome to the tournament management system home page. Our system will make life easier for many organizers and help in controlling and structuring data. </p>
+<h2>Dynamic content</h2>
+
+<p>The tournament is attended by {{num_team}} teams:</p>
+  <ul>
+		{% for item in team_name %}
+				<li>{{item}}</li>
+		{% endfor %}
+  </ul>{% endblock %}

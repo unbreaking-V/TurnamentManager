@@ -1,0 +1,17 @@
+{% extends "master/base.html" %}
+
+{% block content %}
+  <form method="post" action="" class="form-group">
+         {% csrf_token %}
+         <div class="input-group mb-3">
+             <table> 
+                 {{form.as_table}}
+             </table>
+             </div>
+             <div class="input-group-prepend">
+                 <input type="submit" value="Create New" class="btn btn-success">
+             </div>
+    </form>  
+{% endblock %}
+
+
