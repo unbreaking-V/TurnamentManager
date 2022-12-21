@@ -5,19 +5,15 @@ urlpatterns = [
     path("home/", views.home, name='home'),
     path("view/",views.AllViews,name='view'),
     path("create/", views.AllCreate, name='create'),
-    path("update/",views.AllUpdate,name='update'),
-    path("update_team/<int:pk>",views.TeamUpdate,name="update_team"),
-    path("delete_team/<int:pk>",views.TeamDelete,name="delete_team"),
-    path("team_list/<int:pk>", views.TeamListView, name="team_list"),
+    path("team_list/", views.TeamListView, name="team_list"),
 
 ]
 
 # Team
 urlpatterns += [
-   # path("view/team_list/<int:pk>", views.TeamListView, name="team_list"),
-    path("create/create_team/",views.TeamCreate, name="create_team"),
-    #path("update/update_team/<int:pk>",views.TeamUpdate, name="update_team"),
-
+    path("delete_team/<int:pk>",views.TeamDelete, name="delete_team"),
+    path("update_team/<int:pk>",views.TeamUpdate, name="update_team"),
+    path("create/create_team/",views.TeamCreate,  name="create_team"),
 ]
 
 # Coach
