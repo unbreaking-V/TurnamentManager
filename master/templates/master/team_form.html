@@ -1,7 +1,7 @@
 {% extends "master/base.html" %}
 
 {% block content %}
-  <form method="post" action="/create/" class="form-group">
+  <form method="post" action="" class="form-group">
          {% csrf_token %}
          <div class="input-group mb-3">
              <table> 
@@ -9,7 +9,7 @@
              </table>
              </div>
              <div class="input-group-prepend">
-                  <button type="submit" name="save" class="btn btn-success">Create New</button>
+                  <button type="submit" name="save" class="btn btn-success">Save</button>
              </div>
     </form>  
 {% endblock %}

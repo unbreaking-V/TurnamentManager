@@ -16,31 +16,22 @@ def AllViews(response):
 
 def AllCreate(response):
      return render(response, 'master/all_create.html')
-
-def AllUpdate(response):
-    return render(response,"master/all_update.html")
 #-------------------------------------------------------------
                         #TEAM
 
-
-def TeamListView(response,pk):
-    team = get_object_or_404(Team, team_id=pk)
+def TeamListView(response):
     table = TeamTable(Team.objects.all())
     return render(response, "master/team_list.html", {
-        "table": table, "team":team})
-
-#def TeamListView(response):
-#    team_list = Team.objects.all()
-#    return render(response, 'master/team_list.html', locals())
+        "table": table})
 
 def TeamCreate(response):
-
     form = TeamForm()
-    if response.method == 'POST':
+    if response.method == "POST":
+        print("Printing POST:" , response.POST)
         form = TeamForm(response.POST)
         if form.is_valid():
             form.save()
-            return redirect('create/')
+            return redirect('/view')
 
     contex = {'form':form}
     return  render(response, 'master/team_form.html', contex)
@@ -51,13 +42,11 @@ def TeamUpdate(response,pk):
     form = TeamForm(instance=team)
     contex = {'form':form}
 
-    if response.method == 'POST':
-         form = TeamForm(response.POST)
+    if response.method == "POST":
+         form = TeamForm(response.POST, instance=team)
          if form.is_valid():
              form.save()
-             return redirect('home/')
-
-
+             return redirect('/view/')
 
     return  render(response, 'master/team_form.html', contex)
 
@@ -69,17 +58,6 @@ def TeamDelete(response,pk):
     contex = {"item":team}
 
     return render(response,'master/team_delete.html', contex)
-
-#class TeamCreate(CreateView):
-#    model = Team
-#    fields = ['team_id', 'team_name', 'rating', 'coach_id','stadium_id']
-
-
-#class TeamUpdate(UpdateView):
-#    model = Team
-#    fields = '__all__'
-
-
 #-------------------------------------------------------------
                          #COACH
 def CoachListView(response):
