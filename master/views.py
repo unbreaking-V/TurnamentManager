@@ -4,8 +4,8 @@ from .models import Coach,Stadium,Team,Players,Event_organizer,Team_manager,Requ
 
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
-from .forms import TeamForm
-from .tables import TeamTable
+from .forms import TeamForm, CoachForm, StadiumForm, PlayersForm, OrganizerForm, TeamManagerForm
+from .tables import TeamTable, CoachTable, StadiumTable, PlayersTable, OrganizerTable, TeamManagerTable
 def home(response):
     num_team = Team.objects.all().count()
     team_name = [elem for elem in list(Team.objects.all().values_list('team_name', flat=True))]
@@ -27,7 +27,6 @@ def TeamListView(response):
 def TeamCreate(response):
     form = TeamForm()
     if response.method == "POST":
-        print("Printing POST:" , response.POST)
         form = TeamForm(response.POST)
         if form.is_valid():
             form.save()
@@ -60,61 +59,212 @@ def TeamDelete(response,pk):
     return render(response,'master/team_delete.html', contex)
 #-------------------------------------------------------------
                          #COACH
+
 def CoachListView(response):
-     coach_list = Coach.objects.all()
-     return render(response, 'master/coach_list.html', locals())
+    table = CoachTable(Coach.objects.all())
+    return render(response, "master/coach_list.html", {
+        "table": table})
 
-class CoachCreate(CreateView):
-     model = Coach
-     fields = ['coach_id', 'first_name', 'last_name', 'phone_number']
+def CoachCreate(response):
+    form = CoachForm()
+    if response.method == "POST":
+        form = CoachForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/coach_list')
 
-class CoachUpdate(UpdateView):
-    model = Coach
-    fields = ['coach_id', 'first_name', 'last_name', 'phone_number']
+    contex = {'form':form}
+    return  render(response, 'master/coach_form.html', contex)
 
+
+def CoachUpdate(response,pk):
+    coach = Coach.objects.get(coach_id=pk)
+    form = CoachForm(instance=coach)
+    contex = {'form':form}
+
+    if response.method == "POST":
+         form = CoachForm(response.POST, instance=coach)
+         if form.is_valid():
+             form.save()
+             return redirect('/coach_list')
+
+    return  render(response, 'master/coach_form.html', contex)
+
+def CoachDelete(response,pk):
+    coach = Coach.objects.get(coach_id=pk)
+    if response.method == "POST":
+        coach.delete()
+        return redirect("/coach_list")
+    contex = {"item":coach}
+
+    return render(response,'master/coach_delete.html', contex)
 
 #-------------------------------------------------------------
-                         #Stadium
+                         #STADIUM
+
 def StadiumListView(response):
-     stadium_list = Stadium.objects.all()
-     return render(response, 'master/stadium_list.html', locals())
+    table = StadiumTable(Stadium.objects.all())
+    return render(response, "master/stadium_list.html", {
+        "table": table})
 
-class StadiumCreate(CreateView):
-     model = Stadium
-     fields = ['stadium_id', 'adres', 'number_of_seats']
+def StadiumCreate(response):
+    form = StadiumForm()
+    if response.method == "POST":
+        form = StadiumForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/stadium_list')
+
+    contex = {'form':form}
+    return  render(response, 'master/stadium_form.html', contex)
+
+def StadiumUpdate(response,pk):
+    stadium = Stadium.objects.get(stadium_id=pk)
+    form = StadiumForm(instance=stadium)
+    contex = {'form':form}
+
+    if response.method == "POST":
+         form = StadiumForm(response.POST, instance=stadium)
+         if form.is_valid():
+             form.save()
+             return redirect('/stadium_list')
+
+    return  render(response, 'master/stadium_form.html', contex)
+
+def StadiumDelete(response,pk):
+    stadium = Stadium.objects.get(stadium_id=pk)
+    if response.method == "POST":
+        stadium.delete()
+        return redirect("/stadium_list")
+    contex = {"item": stadium}
+
+    return render(response,'master/stadium_delete.html', contex)
 
 
 #-------------------------------------------------------------
-                         #Players
+                         #PLAYERS
+
 def PlayersListView(response):
-     players_list = Players.objects.all()
-     return render(response, 'master/players_list.html', locals())
+    table = PlayersTable(Players.objects.all())
+    return render(response, "master/players_list.html", {
+        "table": table})
 
-class PlayersCreate(CreateView):
-     model = Players
-     fields = ['player_id','team_id','first_name', 'last_name', 'phone_number']
+def PlayersCreate(response):
+    form = PlayersForm()
+    if response.method == "POST":
+        form = PlayersForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/players_list')
 
+    contex = {'form':form}
+    return  render(response, 'master/players_form.html', contex)
+
+def PlayersUpdate(response,pk):
+    players = Players.objects.get(player_id=pk)
+    form = PlayersForm(instance=players)
+    contex = {'form':form}
+
+    if response.method == "POST":
+         form = PlayersForm(response.POST, instance=players)
+         if form.is_valid():
+             form.save()
+             return redirect('/players_list')
+
+    return  render(response, 'master/players_form.html', contex)
+
+def PlayersDelete(response,pk):
+    players = Players.objects.get(player_id=pk)
+    if response.method == "POST":
+        players.delete()
+        return redirect("/players_list")
+    contex = {"item": players}
+
+    return render(response,'master/players_delete.html', contex)
 
 #-------------------------------------------------------------
                     #EVENT_ORGANIZER
-def EventOrganizerListView(response):
-     event_organizer_list = Event_organizer.objects.all()
-     return render(response, 'master/event_organizer_list.html', locals())
 
-class EventOrganizerCreate(CreateView):
-     model = Event_organizer
-     fields = ['organizer_id','stadium_id','first_name', 'last_name', 'phone_number']
+def OrganizerListView(response):
+    table = OrganizerTable(Event_organizer.objects.all())
+    return render(response, "master/organizer_list.html", {
+        "table": table})
+
+def OrganizerCreate(response):
+    form = OrganizerForm()
+    if response.method == "POST":
+        form = OrganizerForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/organizer_list')
+
+    contex = {'form':form}
+    return  render(response, 'master/organizer_form.html', contex)
+
+def OrganizerUpdate(response,pk):
+    organizer = Event_organizer.objects.get(organizer_id=pk)
+    form = OrganizerForm(instance=organizer)
+    contex = {'form':form}
+
+    if response.method == "POST":
+         form = OrganizerForm(response.POST, instance=organizer)
+         if form.is_valid():
+             form.save()
+             return redirect('/organizer_list')
+
+    return  render(response, 'master/organizer_form.html', contex)
+
+def OrganizerDelete(response,pk):
+    organizer = Event_organizer.objects.get(organizer_id=pk)
+    if response.method == "POST":
+        organizer.delete()
+        return redirect("/organizer_list")
+    contex = {"item": organizer}
+
+    return render(response,'master/organizer_delete.html', contex)
 
 
 #-------------------------------------------------------------
                     #TEAM_MANAGER
-def TeamManagerListView(response):
-     team_manager_list = Team_manager.objects.all()
-     return render(response, 'master/team_manager_list.html', locals())
 
-class TeamManagerCreate(CreateView):
-     model = Team_manager
-     fields = ['manager_id','team_id','first_name', 'last_name', 'phone_number']
+def TeamManagerListView(response):
+    table = TeamManagerTable(Team_manager.objects.all())
+    return render(response, "master/team_manager_list.html", {
+        "table": table})
+
+def TeamManagerCreate(response):
+    form = TeamManagerForm()
+    if response.method == "POST":
+        form = TeamManagerForm(response.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/team_manager_list')
+
+    contex = {'form':form}
+    return  render(response, 'master/team_manager_form.html', contex)
+
+def TeamManagerUpdate(response,pk):
+    manager = Team_manager.objects.get(manager_id=pk)
+    form = TeamManagerForm(instance=manager)
+    contex = {'form':form}
+
+    if response.method == "POST":
+         form = TeamManagerForm(response.POST, instance=manager)
+         if form.is_valid():
+             form.save()
+             return redirect('/team_manager_list')
+
+    return  render(response, 'master/team_manager_form.html', contex)
+
+def TeamManagerDelete(response,pk):
+    manager = Team_manager.objects.get(manager_id=pk)
+    if response.method == "POST":
+        manager.delete()
+        return redirect("/team_manager_list")
+    contex = {"item": manager}
+
+    return render(response,'master/team_manager_delete.html', contex)
+
 
 
 #-------------------------------------------------------------
