@@ -1,15 +1,8 @@
 {% extends "master/base.html" %}
-{# yonetim/templates/list.html #}
-{% load render_table from django_tables2 %}
-{% load static %}
-{% block content %}
-<head>
-<link rel="stylesheet" href="{% static 'ticket/static/css/screen.css' %}" />
-</head>
-<body>
-        {% render_table budget_list %}
-</body>
+{% load django_tables2 %}
 
-{% endblock %}
+{% block content %}
+{% render_table table %}
+{% endblock content %}
 
 
