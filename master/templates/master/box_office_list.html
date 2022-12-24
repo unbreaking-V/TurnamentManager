@@ -3,6 +3,12 @@
 
 {% block content %}
 {% render_table table %}
+<br>
+<form method="post" action="{% url 'create_box_office' %}" class="form-group">
+        {% csrf_token %}
+              <div class="input-group-prepend">
+                  <button type="submit" name="save" class="btn btn-primary btn-lg btn-block">Create box office</button>
+              </div>
+       </form>
+</br>
 {% endblock content %}
-
-
