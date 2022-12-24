@@ -1,0 +1,22 @@
+{% extends "master/base.html" %}
+{% block content %}
+
+<br>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card card-body">
+
+            <p>  Are you sure you want to delete the budget with ID <b>{{item.window_id}}</b>  ?</p>
+
+            <form method="post" action="{% url 'delete_box_office' item.window_id %}" class="form-group">
+    
+
+            {% csrf_token %}
+            <a class="btn btn-warning" href="{% url 'box_office_list' %}">Cancel</a>
+            <input type="submit" name="Confirm" class="btn btn-danger">
+        </div>
+    </div>
+</div>
+</br>
+{% endblock %}
+
