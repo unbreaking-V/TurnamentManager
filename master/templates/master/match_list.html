@@ -4,10 +4,10 @@
 {% block content %}
 {% render_table table %}
 <br>
-<form method="post" action="{% url 'create_request' %}" class="form-group">
+<form method="post" action="{% url 'create_match' %}" class="form-group">
         {% csrf_token %}
               <div class="input-group-prepend">
-                  <button type="submit" name="save" class="btn btn-primary btn-lg btn-block">Create request</button>
+                  <button type="submit" name="save" class="btn btn-primary btn-lg btn-block">Create match</button>
               </div>
        </form>
 </br>

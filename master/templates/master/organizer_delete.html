@@ -6,12 +6,13 @@
     <div class="col-md-6">
         <div class="card card-body">
 
-            <p> Are you sure you want to delete <b>{{item.team_name}}</b> ?</p>
+            <p> Are you sure you want to delete <b>{{item.last_name}}</b> ? </p>
 
-            <form method="post" action="{% url 'delete_team' item.team_id %}" class="form-group">
+            <form method="post" action="{% url 'delete_organizer' item.organizer_id %}" class="form-group">
     
+
             {% csrf_token %}
-            <a class="btn btn-warning" href="{% url 'team_list' %}">Cancel</a>
+            <a class="btn btn-warning" href="{% url 'organizer_list' %}">Cancel</a>
             <input type="submit" name="Confirm" class="btn btn-danger">
         </div>
     </div>

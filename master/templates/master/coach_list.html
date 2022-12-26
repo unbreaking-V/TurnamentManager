@@ -1,15 +1,14 @@
 {% extends "master/base.html" %}
-{# yonetim/templates/list.html #}
-{% load render_table from django_tables2 %}
-{% load static %}
+{% load django_tables2 %}
+
 {% block content %}
-<head>
-<link rel="stylesheet" href="{% static 'ticket/static/css/screen.css' %}" />
-</head>
-<body>
-        {% render_table coach_list %}
-</body>
-
-{% endblock %}
-
-
+{% render_table table %}
+<br>
+<form method="post" action="{% url 'create_coach' %}" class="form-group">
+        {% csrf_token %}
+              <div class="input-group-prepend">
+                  <button type="submit" name="save" class="btn btn-primary btn-lg btn-block">Create coach</button>
+              </div>
+       </form>
+</br>
+{% endblock content %}
