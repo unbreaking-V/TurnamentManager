@@ -2,6 +2,17 @@
 {% load django_tables2 %}
 
 {% block content %}
+<br>
+<form class="d-flex", method="POST", action="{% url 'search_team' %}">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" id ="HelpBlock" placeholder="Search name" aria-label="Search" name="searched">    
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+<small id="HelpBlock" class="form-text text-muted">
+Your query should consist of letters of the English alphabet and will be used to search for the team name. 
+</small>
+
+</br>
 {% render_table table %}
 <br>
 <form method="post" action="{% url 'create_team' %}" class="form-group">

@@ -11,7 +11,7 @@
             <form method="post" action="{% url 'delete_team' item.team_id %}" class="form-group">
     
             {% csrf_token %}
-            <a class="btn btn-warning" href="{% url 'team_list' %}">Cancel</a>
+            <a class="btn btn-warning" href="{% url 'team_list' 0 %}">Cancel</a>
             <input type="submit" name="Confirm" class="btn btn-danger">
         </div>
     </div>
