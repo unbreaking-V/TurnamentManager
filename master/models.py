@@ -84,6 +84,7 @@ class Team_manager(models.Model):
 
 
 class Request(models.Model):
+         #DatE not data
          create_data = models.DateField()
          salary = models.IntegerField()
          manager_id = models.ForeignKey(Team_manager,on_delete=models.SET_NULL, null=True)

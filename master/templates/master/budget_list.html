@@ -2,6 +2,17 @@
 {% load django_tables2 %}
 
 {% block content %}
+<br>
+<form class="d-flex", method="POST", action="{% url 'search_budget' %}">
+    {% csrf_token %}
+    <input class="form-control me-2" type="search" id ="HelpBlock" placeholder="Search prize fund" aria-label="Search" name="searched">    
+    <button class="btn btn-outline-secondary" type="submit">Search</button>
+</form>
+<small id="HelpBlock" class="form-text text-muted">
+Your query should consist of numbers and will be used to find the prize fund.
+</small>
+
+</br>
 {% render_table table %}
 <br>
 <form method="post" action="{% url 'create_budget' %}" class="form-group">

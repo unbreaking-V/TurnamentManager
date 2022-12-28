@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import Team, Coach, Stadium, Players,Event_organizer,Team_manager
+from .models import Team,Coach,Stadium,Players,Event_organizer,Team_manager,Request,Match_history,Budget, Box_office, Employee
 
 class TeamForm(ModelForm):
     class Meta:
@@ -31,6 +31,28 @@ class TeamManagerForm(ModelForm):
         model = Team_manager
         fields = '__all__'
 
+class RequestForm(ModelForm):
+    class Meta:
+        model = Request
+        fields = '__all__'
 
+class MatchForm(ModelForm):
+    class Meta:
+        model = Match_history
+        fields = '__all__'
 
+class BudgetForm(ModelForm):
+    class Meta:
+        model = Budget
+        fields = '__all__'
+
+class BoxOfficeForm(ModelForm):
+    class Meta:
+        model = Box_office
+        fields = '__all__'
+
+class EmployeeForm(ModelForm):
+    class Meta:
+        model = Employee
+        fields = '__all__'
 

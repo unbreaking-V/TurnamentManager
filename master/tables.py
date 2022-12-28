@@ -1,5 +1,5 @@
 from django_tables2 import tables, TemplateColumn
-from .models import Team, Coach, Stadium, Players, Event_organizer, Team_manager
+from .models import Team, Coach, Stadium, Players, Event_organizer, Team_manager, Request, Match_history, Budget, Box_office,Employee
 
 class TeamTable(tables.Table):
     class Meta:
@@ -73,4 +73,63 @@ class TeamManagerTable(tables.Table):
     edit = TemplateColumn(template_name='master/team_manager_update_column.html')
     delete = TemplateColumn(template_name='master/team_manager_delete_column.html')
 
+class RequestTable(tables.Table):
+    class Meta:
+        model = Request
+        row_attrs = {
+            "id": lambda record: record.pk
+         }
+        attrs = {'class': "table table-striped thead-dark",
+                  'thead' : {'class': 'thead-dark' }}
+        fields = ['id','create_data', 'salary', 'manager_id', 'organizer_id','edit', 'delete']
+    edit = TemplateColumn(template_name='master/request_update_column.html')
+    delete = TemplateColumn(template_name='master/request_delete_column.html')
+
+class MatchTable(tables.Table):
+    class Meta:
+        model = Match_history
+        row_attrs = {
+            "id": lambda record: record.pk
+         }
+        attrs = {'class': "table table-striped thead-dark",
+                  'thead' : {'class': 'thead-dark' }}
+        fields = ['match_id', 'team_id', 'team_score', 'match_date', 'stadium_id','edit', 'delete']
+    edit = TemplateColumn(template_name='master/match_update_column.html')
+    delete = TemplateColumn(template_name='master/match_delete_column.html')
+
+class BudgetTable(tables.Table):
+   class Meta:
+       model = Budget
+       row_attrs = {
+           "budget_id": lambda record: record.pk
+        }
+       attrs = {'class': "table table-striped thead-dark",
+                 'thead' : {'class': 'thead-dark' }}
+       fields = ['budget_id', 'prize_fund', 'balance', 'expenses', 'profit','edit','delete']
+   edit = TemplateColumn(template_name='master/budget_update_column.html')
+   delete = TemplateColumn(template_name='master/budget_delete_column.html')
+
+class BoxOfficeTable(tables.Table):
+  class Meta:
+      model = Box_office
+      row_attrs = {
+          "window_id": lambda record: record.pk
+       }
+      attrs = {'class': "table table-striped thead-dark",
+                'thead' : {'class': 'thead-dark' }}
+      fields = ['window_id', 'employee_id', 'stadium_id', 'number_of_tickets', 'ticket_price','edit','delete']
+  edit = TemplateColumn(template_name='master/box_office_update_column.html')
+  delete = TemplateColumn(template_name='master/box_office_delete_column.html')
+
+class EmployeeTable(tables.Table):
+  class Meta:
+      model = Employee
+      row_attrs = {
+          "employee_id": lambda record: record.pk
+       }
+      attrs = {'class': "table table-striped thead-dark",
+                'thead' : {'class': 'thead-dark' }}
+      fields = ['employee_id', 'organizer_id', 'window_id','first_name','last_name', 'phone_number','edit','delete']
+  edit = TemplateColumn(template_name='master/employee_update_column.html')
+  delete = TemplateColumn(template_name='master/employee_delete_column.html')
 

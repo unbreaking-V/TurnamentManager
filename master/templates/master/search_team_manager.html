@@ -1,0 +1,19 @@
+{% extends "master/base.html" %}
+{% load django_tables2 %}
+
+{% block content %}
+<center>
+    {% if managers %}
+        <h1>You searched for: "{{ searched }}"</h1>       
+        <h2>Search results:</h2>  
+        {% for manager in managers %}
+        <h4><a href="{% url "team_manager_list" manager.manager_id %}"><li>{{manager.last_name}}</li></a></h4>
+        {% endfor %}
+    {% else %}
+        <h1>Unfortunately, your search returned no results</h1>
+    {% endif %}
+</center>
+
+<a class="btn btn-info btn-lg" href="{% url 'team_manager_list' 0 %}">Go back</a>
+{% endblock %}
+
