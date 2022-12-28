@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for match in matchs %}
-        <h4><a href="{% url "match_list" match.match_id %}"><li>{{match.match_date}}</li></a></h4>
+        <h4><a href="{% url "match_list" match.match_id %}"><li>id[{{match.match_id}}]:{{match.match_date}}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>

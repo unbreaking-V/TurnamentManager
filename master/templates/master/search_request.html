@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for request in requests %}
-        <h4><a href="{% url "request_list" request.request_id %}"><li>{{request.create_date}}</li></a></h4>
+        <h4><a href="{% url "request_list" request.request_id %}"><li>id[{{request.request_id}}]:{{request.create_date}}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>

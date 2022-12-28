@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for organizer in organizers %}
-        <h4><a href="{% url "organizer_list" organizer.organizer_id %}"><li>{{organizer.last_name}}</li></a></h4>
+        <h4><a href="{% url "organizer_list" organizer.organizer_id %}"><li>id[{{organizer.organizer_id}}]:{{organizer.last_name}}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>

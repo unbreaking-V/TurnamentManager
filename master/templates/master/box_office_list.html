@@ -5,11 +5,11 @@
 <br>
 <form class="d-flex", method="POST", action="{% url 'search_box_office' %}">
     {% csrf_token %}
-    <input class="form-control me-2" type="search" id ="HelpBlock" placeholder="Search employee" aria-label="Search" name="searched">    
+    <input class="form-control me-2" type="search" id ="HelpBlock" placeholder="Search name" aria-label="Search" name="searched">    
     <button class="btn btn-outline-secondary" type="submit">Search</button>
 </form>
 <small id="HelpBlock" class="form-text text-muted">
-Your query should consist of numbers and will be used to find employee id.
+Your query should consist of letters of the English alphabet and will be used to search for the window name.
 </small>
 </br>
 {% render_table table %}

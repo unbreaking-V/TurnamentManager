@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for budget in budgets %}
-        <h4><a href="{% url "budget_list" budget.budget_id %}"><li>{{budget.prize_fund}}</li></a></h4>
+        <h4><a href="{% url "budget_list" budget.organizer_id %}"><li>id[{{budget.organizer_id}}]:{{budget.prize_fund}}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>

@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for employee in employees %}
-        <h4><a href="{% url "employee_list" employee.employee_id %}"><li>{{employee.last_name }}</li></a></h4>
+        <h4><a href="{% url "employee_list" employee.employee_id %}"><li>id[{{employee.employee_id}}]:{{employee.last_name }}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>

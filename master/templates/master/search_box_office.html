@@ -7,7 +7,7 @@
         <h1>You searched for: "{{ searched }}"</h1>       
         <h2>Search results:</h2>  
         {% for office in offices %}
-        <h4><a href="{% url "box_office_list" office.window_id %}"><li>{{office.employee_id}}</li></a></h4>
+        <h4><a href="{% url "box_office_list" office.window_id %}"><li>id[{{office.window_id}}]:{{office.window_name}}</li></a></h4>
         {% endfor %}
     {% else %}
         <h1>Unfortunately, your search returned no results</h1>
