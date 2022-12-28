@@ -343,7 +343,7 @@ def TeamManagerDelete(response,pk):
 
 def RequestListView(response,pk):
     if pk:
-        table = RequestTable(Request.objects.filter(id = pk))
+        table = RequestTable(Request.objects.filter(request_id = pk))
     else:
         table = RequestTable(Request.objects.all())
 
@@ -354,7 +354,7 @@ def SearchRequest(response):
         searched = response.POST['searched']
         if searched == "":
             return redirect('/request_list/0')
-        requests = Request.objects.filter(create_data__contains=searched)
+        requests = Request.objects.filter(create_date__contains=searched)
         return render(response, 'master/search_request.html', {'searched':searched,"requests": requests})
 
 
@@ -370,7 +370,7 @@ def RequestCreate(response):
     return  render(response, 'master/request_form.html', contex)
 
 def RequestUpdate(response,pk):
-    request = Request.objects.get(id=pk)
+    request = Request.objects.get(request_id=pk)
     form = RequestForm(instance=request)
     contex = {'form':form}
 
@@ -383,7 +383,7 @@ def RequestUpdate(response,pk):
     return  render(response, 'master/request_form.html', contex)
 
 def RequestDelete(response,pk):
-    request = Request.objects.get(id=pk)
+    request = Request.objects.get(requsr_id=pk)
     if response.method == "POST":
         request.delete()
         return redirect("/request_list/0")
@@ -450,7 +450,7 @@ def MatchDelete(response,pk):
 
 def BudgetListView(response,pk):
     if pk:
-        table = BudgetTable(Budget.objects.filter(budget_id = pk))
+        table = BudgetTable(Budget.objects.filter(organizer_id = pk))
     else:
         table = BudgetTable(Budget.objects.all())
 
@@ -476,7 +476,7 @@ def BudgetCreate(response):
     return  render(response, 'master/budget_form.html', contex)
 
 def BudgetUpdate(response,pk):
-    budget = Budget.objects.get(budget_id=pk)
+    budget = Budget.objects.get(organizer_id=pk)
     form = BudgetForm(instance=budget)
     contex = {'form':form}
 
@@ -489,7 +489,7 @@ def BudgetUpdate(response,pk):
     return  render(response, 'master/budget_form.html', contex)
 
 def BudgetDelete(response,pk):
-    budget = Budget.objects.get(budget_id=pk)
+    budget = Budget.objects.get(organizer_id=pk)
     if response.method == "POST":
         budget.delete()
         return redirect("/budget_list/0")
@@ -513,7 +513,7 @@ def SearchBoxOffice(response):
         searched = response.POST['searched']
         if searched == "":
             return redirect('/box_office_list/0')
-        offices = Box_office.objects.filter(employee_id__contains=searched)
+        offices = Box_office.objects.filter(window_id__contains=searched)
         return render(response, 'master/search_box_office.html', {'searched':searched,"offices": offices})
 
 def BoxOfficeCreate(response):

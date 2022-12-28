@@ -1,4 +1,5 @@
 from django.forms import ModelForm
+from phonenumber_field.formfields import PhoneNumberField
 from .models import Team,Coach,Stadium,Players,Event_organizer,Team_manager,Request,Match_history,Budget, Box_office, Employee
 
 class TeamForm(ModelForm):
@@ -7,7 +8,8 @@ class TeamForm(ModelForm):
         fields = '__all__'
 
 class CoachForm(ModelForm):
-     class Meta:
+    phone_number = PhoneNumberField(region="PL")
+    class Meta:
          model = Coach
          fields = '__all__'
 
@@ -17,16 +19,19 @@ class StadiumForm(ModelForm):
          fields = '__all__'
 
 class PlayersForm(ModelForm):
+     phone_number = PhoneNumberField(region="PL")
      class Meta:
          model = Players
          fields = '__all__'
 
 class OrganizerForm(ModelForm):
+    phone_number =  PhoneNumberField(region="PL")
     class Meta:
         model = Event_organizer
         fields = '__all__'
 
 class TeamManagerForm(ModelForm):
+    phone_number = PhoneNumberField(region="PL")
     class Meta:
         model = Team_manager
         fields = '__all__'
@@ -52,6 +57,7 @@ class BoxOfficeForm(ModelForm):
         fields = '__all__'
 
 class EmployeeForm(ModelForm):
+    phone_number = PhoneNumberField(region="PL")
     class Meta:
         model = Employee
         fields = '__all__'

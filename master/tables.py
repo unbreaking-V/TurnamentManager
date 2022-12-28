@@ -41,7 +41,7 @@ class PlayersTable(tables.Table):
     class Meta:
         model = Players
         row_attrs = {
-            "coach_id": lambda record: record.pk
+            "player_id": lambda record: record.pk
          }
         attrs = {'class': "table table-striped thead-dark",
                   'thead' : {'class': 'thead-dark' }}
@@ -65,7 +65,7 @@ class TeamManagerTable(tables.Table):
     class Meta:
         model = Team_manager
         row_attrs = {
-            "organizer_id": lambda record: record.pk
+            "manager_id": lambda record: record.pk
          }
         attrs = {'class': "table table-striped thead-dark",
                   'thead' : {'class': 'thead-dark' }}
@@ -77,11 +77,11 @@ class RequestTable(tables.Table):
     class Meta:
         model = Request
         row_attrs = {
-            "id": lambda record: record.pk
+            "request_id": lambda record: record.pk
          }
         attrs = {'class': "table table-striped thead-dark",
                   'thead' : {'class': 'thead-dark' }}
-        fields = ['id','create_data', 'salary', 'manager_id', 'organizer_id','edit', 'delete']
+        fields = ['request_id','create_date', 'salary', 'manager_id', 'organizer_id','edit', 'delete']
     edit = TemplateColumn(template_name='master/request_update_column.html')
     delete = TemplateColumn(template_name='master/request_delete_column.html')
 
@@ -89,7 +89,7 @@ class MatchTable(tables.Table):
     class Meta:
         model = Match_history
         row_attrs = {
-            "id": lambda record: record.pk
+            "match_id": lambda record: record.pk
          }
         attrs = {'class': "table table-striped thead-dark",
                   'thead' : {'class': 'thead-dark' }}
@@ -101,11 +101,11 @@ class BudgetTable(tables.Table):
    class Meta:
        model = Budget
        row_attrs = {
-           "budget_id": lambda record: record.pk
+           "organizer_id": lambda record: record.pk
         }
        attrs = {'class': "table table-striped thead-dark",
                  'thead' : {'class': 'thead-dark' }}
-       fields = ['budget_id', 'prize_fund', 'balance', 'expenses', 'profit','edit','delete']
+       fields = ['organizer_id', 'prize_fund', 'balance', 'expenses', 'profit','edit','delete']
    edit = TemplateColumn(template_name='master/budget_update_column.html')
    delete = TemplateColumn(template_name='master/budget_delete_column.html')
 
@@ -117,7 +117,7 @@ class BoxOfficeTable(tables.Table):
        }
       attrs = {'class': "table table-striped thead-dark",
                 'thead' : {'class': 'thead-dark' }}
-      fields = ['window_id', 'employee_id', 'stadium_id', 'number_of_tickets', 'ticket_price','edit','delete']
+      fields = ['window_id', 'window_name','stadium_id', 'number_of_tickets', 'ticket_price','edit','delete']
   edit = TemplateColumn(template_name='master/box_office_update_column.html')
   delete = TemplateColumn(template_name='master/box_office_delete_column.html')
 

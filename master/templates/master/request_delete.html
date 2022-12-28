@@ -6,9 +6,9 @@
     <div class="col-md-6">
         <div class="card card-body">
 
-            <p> Are you sure you want to delete the request made by <b>{{item.create_data}}</b> ? </p>
+            <p> Are you sure you want to delete the request made by <b>{{item.create_date}}</b> ? </p>
 
-            <form method="post" action="{% url 'delete_request' item.id %}" class="form-group">
+            <form method="post" action="{% url 'delete_request' item.request_id %}" class="form-group">
     
 
             {% csrf_token %}
