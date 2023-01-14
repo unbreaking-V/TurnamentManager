@@ -80,9 +80,13 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE'  : 'django.db.backends.mysql',
+        'NAME'    : 'turnament_db',              
+        'USER'    : 'vladyka',                     
+        'PASSWORD': '99999999',          
+        'HOST'    : 'localhost',                
+        'PORT'    : '3306',
+        }
 }
 
 
