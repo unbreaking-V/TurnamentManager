@@ -2,9 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path("", views.home, name=''),
+    path("", views.home, name='home'),
     path("view/",views.AllViews,name='view'),
-   # path("view_search/<int:pk>",views.ViewSearch, name = "view_search")
 ]
 
 # Team

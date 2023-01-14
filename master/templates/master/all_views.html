@@ -1,16 +1,17 @@
 {% extends "master/base.html" %}
-{% block title %}View List{% endblock %}
+{% block title %}Organizer page{% endblock %}
 
 {% block content %}
-<h1>View List</h1>
-<p>This page contains a list of all the possible tables in our database, which we can view in more detail by clicking on one of the tables we are interested in.</p>
+<h1>Organizer page</h1>
+<p>This page exists for all possible modification and management operations available to the organiser. Below in the dynamic content is a list of available tables.</p>
 <h2>Dynamic content</h2>
+<p>If you are a new user, you will need to go through the tables in the order in which they are listed to complete the database.</p>
 
 <ul>
     <h4>
-        <li><a href="{% url 'team_list' 0 %}">Team</a></li>
         <li><a href="{% url 'coach_list' 0 %}">Coach</a></li>
-        <li><a href="{% url 'stadium_list' 0 %}">Stadium</a></li>
+        <li><a href="{% url 'stadium_list' 0 %}">Stadium</a></li> 
+        <li><a href="{% url 'team_list' 0 %}">Team</a></li>
         <li><a href="{% url 'players_list' 0 %}">Players</a></li>
         <li><a href="{% url 'organizer_list' 0 %}">Event_orginizer</a></li>
         <li><a href="{% url 'team_manager_list' 0 %}">Team_manager</a></li>
