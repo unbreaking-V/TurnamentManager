@@ -6,6 +6,7 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .forms import TeamForm, CoachForm, StadiumForm, PlayersForm, OrganizerForm, TeamManagerForm,RequestForm,MatchForm,BudgetForm,BoxOfficeForm,EmployeeForm
 from .tables import TeamTable, CoachTable, StadiumTable, PlayersTable, OrganizerTable, TeamManagerTable, RequestTable, MatchTable,BudgetTable,BoxOfficeTable,EmployeeTable
+
 def home(response):
     num_team = Team.objects.all().count()
     team_name = [elem for elem in list(Team.objects.all().values_list('team_name', flat=True))]
